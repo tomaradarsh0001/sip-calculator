@@ -1,2 +1,0 @@
-# sip-calculator
-sip-calculator
