@@ -36,7 +36,7 @@ This is a **SIP (Systematic Investment Plan) Calculator** built using **Next.js*
 
 ## ✨ Dark mode
 
-<img src="public/images/darkmode.png" alt="not found">
+<img src="public/images/darkmode.PNG" alt="not found">
 
 ---
 
