@@ -3,28 +3,27 @@ import { Mail, Phone, MapPin, Twitter, Github, Linkedin, Instagram } from 'lucid
 export default function Footer() {
   const footerLinks = {
     product: [
-      { name: 'Features', href: '#' },
-      { name: 'Integrations', href: '#' },
-      { name: 'Pricing', href: '#' },
-      { name: 'Changelog', href: '#' },
+      { name: 'Stocks', href: '#' },
+      { name: 'Future & Options', href: '#' },
+      { name: 'Forex', href: '#' },
+      { name: 'Crypto', href: '#' },
     ],
     company: [
-      { name: 'About', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Careers', href: '#' },
-      { name: 'Press', href: '#' },
+      { name: 'SIP & Lumpsum', href: '#' },
+      { name: 'Mutual Funds', href: '#' },
+      { name: 'Binary Trading', href: '#' },
+      { name: 'Recommandations', href: '#' },
     ],
     resources: [
-      { name: 'Community', href: '#' },
-      { name: 'Contact', href: '#' },
-      { name: 'DPA', href: '#' },
-      { name: 'Terms of service', href: '#' },
+      { name: 'Testimonials', href: '#' },
+      { name: 'About Us', href: '#' },
+      { name: 'Contact Us', href: '#' },
+      { name: 'Subscribe', href: '#' },
     ],
   };
 
   const socialLinks = [
     { name: 'Twitter', href: '#', icon: Twitter },
-    { name: 'GitHub', href: '#', icon: Github },
     { name: 'LinkedIn', href: '#', icon: Linkedin },
     { name: 'Instagram', href: '#', icon: Instagram },
   ];
@@ -37,32 +36,32 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">L</span>
+                <span className="text-white font-bold text-sm">P</span>
               </div>
-              <h3 className="ml-3 text-xl font-bold">Logo</h3>
+              <h3 className="ml-3 text-xl font-bold">PBK Holdings</h3>
             </div>
             <p className="text-gray-300 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-              Building the future of digital experiences with cutting-edge technology and innovative solutions.
+              Welcome to PBK Holdings– where smart investing meets simplicity and smiles! start your financial journey or planning for big dreams.
             </p>
             <div className="space-y-2">
               <div className="flex items-center text-gray-300 dark:text-gray-400 text-sm">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>hello@company.com</span>
+                <span>support@pbkholdings.com</span>
               </div>
               <div className="flex items-center text-gray-300 dark:text-gray-400 text-sm">
                 <Phone className="h-4 w-4 mr-2" />
-                <span>+1 (555) 123-4567</span>
+                <span>+31 (959) 123-4567</span>
               </div>
               <div className="flex items-center text-gray-300 dark:text-gray-400 text-sm">
                 <MapPin className="h-4 w-4 mr-2" />
-                <span>San Francisco, CA</span>
+                <span>New Delhi, INDIA</span>
               </div>
             </div>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Product</h4>
+            <h4 className="text-lg font-semibold mb-4">Stock & F&O</h4>
             <ul className="space-y-2">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
@@ -78,7 +77,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
+            <h4 className="text-lg font-semibold mb-4">Advisory</h4>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -94,7 +93,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Resources</h4>
+            <h4 className="text-lg font-semibold mb-4">Help & Support</h4>
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
@@ -113,7 +112,7 @@ export default function Footer() {
         {/* Bottom section */}
         <div className="mt-12 pt-8 border-t border-gray-800 dark:border-gray-700 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-300 dark:text-gray-400 text-sm">
-            <p>&copy; 2025 Logo. All rights reserved.</p>
+            <p>&copy; 2025 Logo. All rights reserved PBK Holdings.</p>
           </div>
           <div className="flex space-x-6 mt-4 md:mt-0">
             {socialLinks.map((item) => (

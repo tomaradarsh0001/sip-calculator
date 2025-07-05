@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'SIP Calculator',
+  title: 'SIP Calculator - Systematic Investment Plan Calculator',
   description: 'SIP Calculator',
   icons: {
     icon: '/images/favicon.ico',

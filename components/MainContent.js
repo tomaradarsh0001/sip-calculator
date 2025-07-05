@@ -3,49 +3,29 @@ import { useState, useEffect } from 'react';
 import { ArrowRight, Check, Star, Users, Zap, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { AttachMoney, ShowChart, Savings, TrendingUp } from '@mui/icons-material';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import {  ShowChart, Savings, TrendingUp } from '@mui/icons-material';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
 
 export default function MainContent() {
   const features = [
     {
       icon: Zap,
-      title: 'Lightning Fast',
-      description: 'Built for speed with optimized performance and cutting-edge technology.',
+      title: 'Flexible Investment Options ',
+      description: 'Start SIPs from just ₹500/month with the ability to pause, increase, or stop anytime.',
     },
     {
       icon: Shield,
-      title: 'Secure by Design',
-      description: 'Enterprise-grade security with end-to-end encryption and compliance.',
+      title: 'Secure & Trusted Platform',
+      description: 'Bank-grade security to ensure all your personal and financial data is protected.',
     },
     {
       icon: Users,
-      title: 'Team Collaboration',
-      description: 'Seamless collaboration tools for teams of all sizes.',
+      title: 'Expert-Backed Funds',
+      description: 'We offer handpicked mutual fund options reviewed by certified financial advisors.',
     },
-  ];
-
-  const testimonials = [
-    {
-      name: 'Sarah Johnson',
-      role: 'CEO, TechCorp',
-      content: 'This platform has revolutionized how we work. The user experience is exceptional.',
-      rating: 5,
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Product Manager, StartupXYZ',
-      content: 'Incredible performance and reliability. Our team productivity has increased by 40%.',
-      rating: 5,
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Designer, Creative Agency',
-      content: 'The design system is beautiful and the components are highly customizable.',
-      rating: 5,
-    },
-  ];
+  ];  
   const [monthlyInvestment, setMonthlyInvestment] = useState(5000);
   const [interestRate, setInterestRate] = useState(12);
   const [investmentYears, setInvestmentYears] = useState(10);
@@ -63,9 +43,9 @@ export default function MainContent() {
     const months = investmentYears * 12;
     const monthlyRate = interestRate / 100 / 12;
 
-    // SIP Future Value formula: FV = P * [((1 + r)^n - 1) / r] * (1 + r)
-    const futureValue = monthlyInvestment *
-      (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate *
+    const futureValue =
+      monthlyInvestment *
+      ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
       (1 + monthlyRate);
 
     const investedAmount = monthlyInvestment * months;
@@ -79,31 +59,59 @@ export default function MainContent() {
   };
 
   const handleMonthlyInvestmentChange = (e) => {
-    setMonthlyInvestment(parseInt(e.target.value));
+    setMonthlyInvestment(Number(e.target.value));
   };
 
   const handleInterestRateChange = (e) => {
-    setInterestRate(parseFloat(e.target.value));
+    setInterestRate(Number(e.target.value));
   };
 
   const handleYearsChange = (e) => {
-    setInvestmentYears(parseInt(e.target.value));
+    setInvestmentYears(Number(e.target.value));
   };
 
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-IN', {
+  const formatCurrency = (amount) =>
+    new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
       maximumFractionDigits: 0
     }).format(amount);
-  };
 
+  const COLORS = ['#3b82f6', '#10b981'];
+  
   const chartData = [
     { name: 'Invested', value: results.investedAmount },
     { name: 'Returns', value: results.estimatedReturns }
   ];
 
-  const COLORS = ['#4f46e5', '#10b981'];
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index,
+    name
+  }) => {
+    const RADIAN = Math.PI / 180;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor="middle"
+        dominantBaseline="central"
+        className="text-xs font-semibold"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
 
   return (
     <main className="min-h-screen transition-colors duration-300">
@@ -112,32 +120,31 @@ export default function MainContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
-              Build the{' '}
+              Grow Your{' '}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Future
+                Wealth
               </span>{' '}
-              Today
+              With SIP
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed transition-colors duration-300">
-              Create stunning digital experiences with our cutting-edge platform.
-              Designed for developers, trusted by enterprises, loved by users.
+              SIP is a disciplined way to invest a fixed amount regularly in mutual funds.
+              Investors can start with amounts as low as ₹500
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 text-lg"
               >
-                Get Started Free
+                Get Started with SIP
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button variant="outline" size="lg" className="px-8 py-3 text-lg dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800">
-                Watch Demo
+                Read More
               </Button>
             </div>
           </div>
         </div>
       </section>
-
 
       {/* SIP Caculator */}
       <section className="py-16 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
@@ -269,7 +276,7 @@ export default function MainContent() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-indigo-50 dark:bg-gray-700 p-4 rounded-lg">
                   <div className="flex items-center mb-2">
-                    <AttachMoney className="text-indigo-600 dark:text-indigo-400 mr-2" />
+                    <CurrencyRupeeIcon className="text-indigo-600 dark:text-indigo-400 mr-2" />
                     <span className="text-gray-700 dark:text-gray-300 font-medium">Invested Amount</span>
                   </div>
                   <div className="text-2xl font-bold text-indigo-700 dark:text-indigo-300">
@@ -298,21 +305,28 @@ export default function MainContent() {
               </div>
 
               {/* Pie Chart */}
-              <div className="h-64">
-                <h4 className="text-center text-gray-700 dark:text-gray-300 mb-4 font-medium">
-                  Investment Breakdown
-                </h4>
+             <div className="h-64 select-none">
+            <h4 className="text-center text-gray-700 dark:text-gray-300 mb-4 font-medium">
+              Investment Breakdown
+            </h4>
+
+            <div className="flex items-center h-full">
+              {/* Pie Chart */}
+              <div className="w-1/2 h-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
                       data={chartData}
                       cx="50%"
                       cy="50%"
-                      innerRadius={60}
+                      labelLine={false}
+                      label={renderCustomizedLabel}
                       outerRadius={80}
-                      paddingAngle={5}
+                      fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                      animationDuration={1000}
+                      animationEasing="ease-out"
+                      stroke="none"
                     >
                       {chartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -321,12 +335,28 @@ export default function MainContent() {
                   </PieChart>
                 </ResponsiveContainer>
               </div>
+
+              {/* Side Text / Legend */}
+              <div className="w-1/2 pl-6">
+                {chartData.map((entry, index) => (
+                  <div key={index} className="flex items-center mb-2">
+                    <div
+                      className="w-4 h-4 rounded-full mr-2"
+                      style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                    ></div>
+                    <span className="text-gray-700 dark:text-gray-300 text-sm">
+                      {entry.name}: {formatCurrency(entry.value)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
             </div>
           </div>
         </div>
       </section>
-
-
 
       {/* Features Section */}
       <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
@@ -336,7 +366,7 @@ export default function MainContent() {
               Why Choose Our Platform?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300">
-              Discover the features that make us the preferred choice for modern businesses.
+              Get real-time SIP returns, maturity value, and investment projections at your fingertips.
             </p>
           </div>
 
@@ -359,11 +389,6 @@ export default function MainContent() {
           </div>
         </div>
       </section>
-
-
-
-
-
     </main>
   );
 }
