@@ -64,9 +64,7 @@ Where:
 
 ```bash
 git clone https://github.com/your-username/sip-calculator.git
-```bash
 cd sip-calculator
-```bash
 npm install
-```bash
 npm run dev
+```
