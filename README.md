@@ -14,7 +14,7 @@ This is a **SIP (Systematic Investment Plan) Calculator** built using **Next.js*
 - **Dark Mode**: Enabled using Theme Context API + `localStorage`
 - **Hosting**: [Vercel](https://sip-calculator-tau.vercel.app/)
 
--**View Demo** :- https://sip-calculator-tau.vercel.app/
+**View Demo** :- https://sip-calculator-tau.vercel.app/
 ---
 
 ## ✨ Features
@@ -64,6 +64,9 @@ Where:
 
 ```bash
 git clone https://github.com/your-username/sip-calculator.git
+```bash
 cd sip-calculator
+```bash
 npm install
+```bash
 npm run dev
