@@ -29,7 +29,27 @@ export default function MainContent() {
       description: 'We offer handpicked mutual fund options reviewed by certified financial advisors.',
     },
   ];  
+  const [riskCategory, setRiskCategory] = useState('');
+  const handleRiskCategoryChange = (e) => {
+  const selectedCategory = e.target.value;
+  setRiskCategory(selectedCategory);
   
+  // Update interest rate based on selected category
+  switch(selectedCategory) {
+    case 'conservative':
+      setInterestRate(8);
+      break;
+    case 'moderate':
+      setInterestRate(12);
+      break;
+    case 'aggressive':
+      setInterestRate(15);
+      break;
+    default:
+      // Keep current rate if nothing selected
+      break;
+  }
+};
   const [monthlyInvestment, setMonthlyInvestment] = useState(5000);
   const [interestRate, setInterestRate] = useState(12);
   const [investmentYears, setInvestmentYears] = useState(10);
@@ -120,35 +140,6 @@ export default function MainContent() {
   return (
     <main className="min-h-screen transition-colors duration-300">
       {/* Hero Section */}
-      {/* <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
-              Grow Your{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Wealth
-              </span>{' '}
-              With SIP
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed transition-colors duration-300">
-              SIP is a disciplined way to invest a fixed amount regularly in mutual funds.
-              Investors can start with amounts as low as ₹500
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 text-lg"
-              >
-                Get Started with SIP
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button variant="outline" size="lg" className="px-8 py-3 text-lg dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800">
-                Read More
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section> */}
       <WealthHeroSection />
 
       {/* SIP Caculator */}
@@ -203,7 +194,22 @@ export default function MainContent() {
                   />
                 </div>
               </div>
-
+            <div className="mb-8">
+              <label htmlFor="risk-category" className="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                Risk Category (optional)
+              </label>
+              <select
+                id="risk-category"
+                value={riskCategory}
+                onChange={handleRiskCategoryChange}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white"
+              >
+                <option value="">Select risk category...</option>
+                <option value="conservative">Conservative (upto 8%)</option>
+                <option value="moderate">Moderate (upto 12%)</option>
+                <option value="aggressive">Aggressive (upto 15%)</option>
+              </select>
+            </div>
               {/* Expected Return Rate */}
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-2">
