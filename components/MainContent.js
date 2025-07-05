@@ -6,6 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import {  ShowChart, Savings, TrendingUp } from '@mui/icons-material';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import Sparkle from 'react-sparkle';
+import WealthHeroSection from '@/components/WealthHeroSection';
+
 
 
 export default function MainContent() {
@@ -26,6 +29,7 @@ export default function MainContent() {
       description: 'We offer handpicked mutual fund options reviewed by certified financial advisors.',
     },
   ];  
+  
   const [monthlyInvestment, setMonthlyInvestment] = useState(5000);
   const [interestRate, setInterestRate] = useState(12);
   const [investmentYears, setInvestmentYears] = useState(10);
@@ -116,7 +120,7 @@ export default function MainContent() {
   return (
     <main className="min-h-screen transition-colors duration-300">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 transition-colors duration-300">
+      {/* <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-300">
@@ -144,7 +148,8 @@ export default function MainContent() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <WealthHeroSection />
 
       {/* SIP Caculator */}
       <section className="py-16 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
@@ -359,36 +364,57 @@ export default function MainContent() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
-              Why Choose Our Platform?
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300">
-              Get real-time SIP returns, maturity value, and investment projections at your fingertips.
-            </p>
-          </div>
+    <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
+        Why Choose Our Platform?
+      </h2>
+      <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto transition-colors duration-300">
+        Get real-time SIP returns, maturity value, and investment projections at your fingertips.
+      </p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-all duration-300 dark:bg-gray-800 dark:shadow-gray-900/20">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <feature.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl font-semibold dark:text-white transition-colors duration-300">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600 dark:text-gray-300 text-center transition-colors duration-300">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <Card 
+          key={index} 
+          className="border-none shadow-lg hover:shadow-xl transition-all duration-300 dark:bg-gray-800 dark:shadow-gray-900/20 hover:scale-[1.02] relative overflow-hidden"
+        >
+          {/* Sparkles inside the card */}
+        <Sparkle
+        color={['#bfdbfe', '#d8b4fe', '#fbcfe8'][index % 3]}  // Extremely soft colors
+        count={5}  // Very few sparkles
+        minSize={5}  // Large size
+        maxSize={15}  // Even larger
+        overflowPx={0}
+        fadeOutSpeed={10}  // Ultra slow fade
+        flicker={false}
+        newSparkleOnFadeOut={true}
+        sparkleLifeTime={200}  // 5 seconds lifetime
+        fadeOutPause={200}  // Long pause before fading
+        flickerSpeed="none"  // No flickering at all
+      />
+          <CardHeader className="text-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 relative">
+              <feature.icon 
+                className="h-8 w-8 text-white transition-transform duration-700 hover:rotate-[360deg]" 
+              />
+            </div>
+            <CardTitle className="text-xl font-semibold dark:text-white transition-colors duration-300">
+              {feature.title}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CardDescription className="text-gray-600 dark:text-gray-300 text-center transition-colors duration-300">
+              {feature.description}
+            </CardDescription>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
     </main>
   );
 }
